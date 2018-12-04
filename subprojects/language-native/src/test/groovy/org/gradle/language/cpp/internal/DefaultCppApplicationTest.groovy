@@ -16,6 +16,7 @@
 
 package org.gradle.language.cpp.internal
 
+import org.gradle.api.internal.CollectionCallbackActionDecorator
 import org.gradle.language.cpp.CppPlatform
 import org.gradle.nativeplatform.MachineArchitecture
 import org.gradle.nativeplatform.OperatingSystemFamily
@@ -32,7 +33,7 @@ class DefaultCppApplicationTest extends Specification {
     @Rule
     TestNameTestDirectoryProvider tmpDir = new TestNameTestDirectoryProvider()
     def project = TestUtil.createRootProject(tmpDir.testDirectory)
-    def application = new DefaultCppApplication("main", project.objects, project.fileOperations, project.services.get(TargetMachineFactory.class))
+    def application = new DefaultCppApplication("main", project.objects, project.fileOperations, project.services.get(TargetMachineFactory.class), CollectionCallbackActionDecorator.NOOP)
 
     def "has display name"() {
         expect:
